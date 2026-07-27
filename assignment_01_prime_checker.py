@@ -1,6 +1,6 @@
 # =============================================================================
-# PROGRAMMING FUNDAMENTALS — Assignment 1
-# Topic: Conditional Logic, Loops, and Functions
+#  FUNDAMENTALS — Assignment 1
+# Topic: CondPROGRAMMINGitional Logic, Loops, and Functions
 # =============================================================================
 #
 # TASK: Prime Number Checker
@@ -31,7 +31,27 @@
 # - The main block must call the function and print the result.
 #
 
+
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+
+num = int(input("Enter your number: "))
+
+
+def is_prime(num):
+    if num < 2:
+        return (
+            str(num) + " is NOT a prime number."
+        )
+    for i in range(2, num):
+        if num % i == 0:
+            return (
+                str(num)
+                + " is NOT a prime number."
+            )
+    return str(num) + " is a prime number."
+
+
+print(is_prime(num))
