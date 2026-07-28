@@ -7,7 +7,6 @@
 #
 # Write a Python program that performs three operations on matrices (2D lists),
 # each implemented in its own function.
-#
 # -----------------------------------------------------------------------------
 # PART A — Transpose a Matrix
 # -----------------------------------------------------------------------------
@@ -59,4 +58,67 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+def transpose_matrix(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+    result = []
+    for j in range(cols):
+        new_row = []
+        for i in range(rows):
+            new_row.append(matrix[i][j])
+        result.append(new_row)
+    return result
 
+def print_matrix(matrix):
+    for row in matrix:
+        print(" ".join(map(str, row)))
+
+def read_matrix(rows, cols):
+            matrix = []
+            for i in range(rows):
+                row = list(map(int, input(f"Enter row {i + 1}: ").split()))
+                if len(row) != cols:
+                    raise ValueError(f"Row {i + 1} must have exactly {cols} values.")
+                matrix.append(row)
+            return matrix 
+rows = int(input("Enter number of rows: "))
+cols = int(input("Enter number of columns: "))
+matrix_a = read_matrix(rows, cols)
+print("Original Matrix:")
+print_matrix(matrix_a)
+
+transposed = transpose_matrix(matrix_a)
+print("Transposed Matrix:")
+print_matrix(transposed)
+
+def add_matrices(matrix_a, matrix_b):
+        rows = len(matrix_a)
+        cols = len(matrix_a[0])
+        result = []
+        for i in range(rows):
+            row = []
+            for j in range(cols):
+                row.append(matrix_a[i][j] + matrix_b[i][j])
+            result.append(row)
+        return result
+
+
+def multiply_matrices(matrix_a, matrix_b):
+    rows_a = len(matrix_a)
+    cols_a = len(matrix_a[0])
+    rows_b = len(matrix_b)
+    cols_b = len(matrix_b[0])
+
+    if cols_a != rows_b:
+        raise ValueError("Number of columns in A must equal number of rows in B.")
+
+    result = []
+    for i in range(rows_a):
+        row = []
+        for j in range(cols_b):
+            sum_product = 0
+            for k in range(cols_a):
+                sum_product += matrix_a[i][k] * matrix_b[k][j]
+            row.append(sum_product)
+        result.append(row)
+    return result
